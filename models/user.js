@@ -2,12 +2,12 @@
  * Created by Harry Chen on 2017/2/16.
  */
 var mongodb = require('./db');
+var util = require('util');
 
 function User(user) {
     this.name = user.name;
     this.password = user.password;
 };
-module.exports = User;
 
 User.prototype.save = function save(callback) {
     // 存入 Mongodb 的文檔
@@ -52,6 +52,10 @@ User.get = function get(username, callback) {
                 mongodb.close();
                 if (doc) {
                     // 封裝文檔爲 User 對象
+                    //doc{ _id: 58a5b6c02dc5528b88a49887,
+                    //    name: 'q',
+                    //    password: 'ICy5YqxZB1uWSwcVLSNLcA==' }
+                    //console.log('doc'+util.inspect(doc,true));
                     var user = new User(doc);
                     callback(err, user);
                 } else {
@@ -61,3 +65,5 @@ User.get = function get(username, callback) {
         });
     });
 };
+
+module.exports = User;

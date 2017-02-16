@@ -5,6 +5,7 @@ var express = require('express');
 var router = express.Router();
 var crypto = require('crypto');
 var User = require('../models/user')
+var util = require('util');
 
 /* GET reg listing. */
 router.get('/', function(req, res, next) {
@@ -29,6 +30,7 @@ router.post('/', function (req,res,next) {
     //检查用户名是否已经存在
     User.get(newUser.name, function (err,user) {
         if(user){
+            console.log('用户存在'+util.inspect(user,true));
             err = 'Username already exists';
         }
         if(err){
@@ -41,7 +43,7 @@ router.post('/', function (req,res,next) {
                 req.flash('err',err);
                 return res.redirect('/reg')
             }
-            console.log('用户名：'+newUser.name);
+            console.log('用户名：'+util.inspect(newUser,true));
             req.session.user = newUser;
             req.flash('success','注册成功');
             res.redirect('/')
@@ -49,6 +51,8 @@ router.post('/', function (req,res,next) {
         })
 
     })
-})
+});
+
+
 
 module.exports = router;
