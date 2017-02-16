@@ -56,26 +56,14 @@ app.use('/reg',reg);
 app.use('/login',login);
 app.use('/logout',logout);
 
+// 添加模板必需的三个变量
+app.use(function (req, res, next) {
+  res.locals.user = req.session.user;
+  res.locals.success = req.flash('success').toString();
+  res.locals.error = req.flash('error').toString();
+  next();
+});
 
-//app.dynamicHelpers({
-//  user: function(req, res) {
-//    return req.session.user;
-//  },
-//  error: function(req, res) {
-//    var err = req.flash('error');
-//    if (err.length)
-//      return err;
-//    else
-//      return null;
-//  },
-//  success: function(req, res) {
-//    var succ = req.flash('success');
-//    if (succ.length)
-//      return succ;
-//    else
-//      return null;
-//  },
-//});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
