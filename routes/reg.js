@@ -6,7 +6,7 @@ var router = express.Router();
 
 /* GET reg listing. */
 router.get('/', function(req, res, next) {
-    res.send('respond with a get resource');
+    res.render('reg', { title: 'Express' });
 });
 router.post('/', function (req,res,next) {
     res.send('respond with a post resource');
