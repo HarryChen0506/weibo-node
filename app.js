@@ -49,6 +49,22 @@ app.use(session({
   store: new MongoStore({db:settings.db})
 }))
 
+// 动态视图助手:添加模板必需的三个变量
+app.use(function (req, res, next) {
+  res.locals.user = req.session.user;
+  res.locals.success = req.flash('success').toString();
+  //res.locals.success = '成功';
+  res.locals.error = req.flash('error').toString();
+  next();
+});
+// 动态视图助手
+//app.use(function (req, res, next) {
+//  res.locals.user = {'name':'harry','age':20};
+//  res.locals.success = '成功';
+//  res.locals.error = '失败';
+//  next();
+//});
+
 app.use('/', index);
 app.use('/u', users);
 app.use('/post', post);
@@ -56,13 +72,8 @@ app.use('/reg',reg);
 app.use('/login',login);
 app.use('/logout',logout);
 
-// 添加模板必需的三个变量
-app.use(function (req, res, next) {
-  res.locals.user = req.session.user;
-  res.locals.success = req.flash('success').toString();
-  res.locals.error = req.flash('error').toString();
-  next();
-});
+
+
 
 
 // catch 404 and forward to error handler

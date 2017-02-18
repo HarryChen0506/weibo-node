@@ -19,7 +19,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Microblog</a>
+            <a class="navbar-brand" href="/">Microblog</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -28,13 +28,26 @@
                 <!--<li><a href="/login">登录</a></li>-->
                 <!--<li><a href="/reg">注册</a></li>-->
                 <% if (!user) { %>
-                <li><a href="/login">登入</a></li>
+                <li><a href="/login">登录</a></li>
                 <li><a href="/reg">注册</a></li>
                 <% } else { %>
-                <li><a href="/logout">登出 </a></li>
+                <li><a href="/logout">退出 </a></li>
+                <li><a><%= user.name %></a></li>
                 <% } %>
 
             </ul>
         </div>
     </div>
 </nav>
+<div class="container">
+    <% if (success) { %>
+        <div class="alert alert-success">
+            <%= success %>
+        </div>
+    <% } %>
+    <% if (error) { %>
+        <div class="alert alert-danger">
+            <%= error %>
+        </div>
+    <% } %>
+</div>

@@ -6,7 +6,10 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.send('respond with a get resource');
+    req.session.user = null;
+    req.flash('success', ' 登出成功');
+    res.redirect('/');
 });
+
 
 module.exports = router;

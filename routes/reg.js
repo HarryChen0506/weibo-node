@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function (req,res,next) {
     //检测两次指令是否一致
     if(req.body['password']!=req.body['password-repeat']){
-        console.log('两次输入的指令不一致');
+        //console.log('两次输入的指令不一致');
         req.flash('error','两次输入的指令不一致');
        return  res.redirect('/reg');
     }
@@ -47,7 +47,6 @@ router.post('/', function (req,res,next) {
             req.session.user = newUser;
             req.flash('success','注册成功');
             res.redirect('/')
-
         })
 
     })
