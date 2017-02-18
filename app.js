@@ -57,13 +57,7 @@ app.use(function (req, res, next) {
   res.locals.error = req.flash('error').toString();
   next();
 });
-// 动态视图助手
-//app.use(function (req, res, next) {
-//  res.locals.user = {'name':'harry','age':20};
-//  res.locals.success = '成功';
-//  res.locals.error = '失败';
-//  next();
-//});
+
 
 app.use('/', index);
 app.use('/u', users);

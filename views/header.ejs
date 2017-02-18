@@ -32,7 +32,7 @@
                 <li><a href="/reg">注册</a></li>
                 <% } else { %>
                 <li><a href="/logout">退出 </a></li>
-                <li><a><%= user.name %></a></li>
+                <li><a href="<%= '/u/'+ user.name %>"><%= user.name %></a></li>
                 <% } %>
 
             </ul>

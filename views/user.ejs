@@ -1,23 +1,10 @@
 <% include header.ejs%>
 
-  <div class="container">
-    <div class="hero-unit" >
-      <h1>欢迎来到 Microblog--Harry</h1>
-      <p>Microblog 是一个基于 Node.js 的微博系统。 </p>
-      <p>
-        <a class="btn btn-primary btn-large" href="/login" >登录</a>
-        <a class="btn btn-large" href="/reg" >立即注册</a>
-      </p>
-    </div>
-  </div>
-
-  <div class="container" >
-    <% if(user){ %>
-      <form method="post" action="/post" class="well form-inline center" style="text-align:center;">
+<div class="container">
+    <form method="post" action="/post" class="well form-inline center" style="text-align:center;">
         <input type="text" class="span8" name="post" >
         <button type="submit" class="btn btn-success" ><i class="icon-comment icon-white" ></i> 发言</button>
-       </form>
-    <% } %>    
+    </form>
 
     <% posts.forEach(function(post, index) {
         if (index % 3 == 0) { %>
@@ -32,13 +19,11 @@
              </div><!-- end row -->
         <% } %>
     <%}) %>
-    
-    <% if (posts.length % 3 != 0) { %>
-        </div><!-- end row -->
-    <%} %>
 
-  </div>
+        <% if (posts.length % 3 != 0) { %>
+            </div><!-- end row -->
+        <%} %>
+
+</div>
 
 <% include footer.ejs%>
-
-

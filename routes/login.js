@@ -6,12 +6,15 @@ var router = express.Router();
 var crypto = require('crypto');
 var User = require('../models/user')
 var util = require('util');
+var isLogin = require('../utiltool/isLogin');
+
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-
+router.get('/',isLogin.checkNotLogin);
+router.get('/', function (req, res, next) {
     res.render('login',{ title:'Express' });
 });
+
 router.post('/', function (req,res,next) {
     //生成口令的散列值
     var md5 = crypto.createHash('md5');
@@ -23,7 +26,6 @@ router.post('/', function (req,res,next) {
     })
 
     //判断用户名是否正确
-
     User.get(loginUser.name, function (err,user) {
         if(err){
             req.flash('error','用户名不存在');
@@ -39,11 +41,9 @@ router.post('/', function (req,res,next) {
         }
         req.session.user = user;
         req.flash('success','登录成功');
-        res.redirect('/');
+        res.redirect('/u/'+loginUser.name);
 
     })
-
-
 
 })
 

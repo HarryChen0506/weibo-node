@@ -6,11 +6,15 @@ var router = express.Router();
 var crypto = require('crypto');
 var User = require('../models/user')
 var util = require('util');
+var isLogin = require('../utiltool/isLogin');
 
 /* GET reg listing. */
+router.get('/',isLogin.checkNotLogin);
 router.get('/', function(req, res, next) {
     res.render('reg', { title: 'Express' });
 });
+
+router.post('/',isLogin.checkNotLogin);
 router.post('/', function (req,res,next) {
     //检测两次指令是否一致
     if(req.body['password']!=req.body['password-repeat']){
@@ -51,7 +55,5 @@ router.post('/', function (req,res,next) {
 
     })
 });
-
-
 
 module.exports = router;
