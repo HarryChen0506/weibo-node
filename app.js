@@ -1,6 +1,4 @@
 
-//做一点修改，创建分支
-//第一次上传分支
 
 var express = require('express');
 var session = require('express-session');
